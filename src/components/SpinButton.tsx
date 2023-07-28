@@ -55,7 +55,7 @@ const SpinButton: React.FC = () => {
           value={count}
           aria-valuenow={count}
           aria-valuemin={1}
-          aria-valuemax={300}
+          aria-valuemax={3}
           id='passenger_input'
         />
         <button
@@ -66,7 +66,13 @@ const SpinButton: React.FC = () => {
           +
         </button>
       </div>
-      <p style={{ display: 'none' }} role='alert' aria-live='assertive'>
+      <p
+        style={{ display: 'none' }}
+        role='alert'
+        aria-hidden='true'
+        aria-live='assertive'
+        aria-relevant='text'
+      >
         {ariaMsg}
       </p>
     </section>
