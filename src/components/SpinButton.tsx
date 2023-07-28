@@ -1,19 +1,25 @@
 import React, { useState, MouseEvent } from 'react';
 import './SpinButton.css';
 
-const SpinButton: React.FC = () => {
+interface SpinButtonProps {
+  label: string;
+}
+
+const SpinButton = ({ label }: SpinButtonProps) => {
   const [count, setCount] = useState<number>(0);
   const [isTooltipVisible, setIsTooltipVisible] = useState<boolean>(false);
   const [ariaMsg, setAriaMsg] = useState<string>('');
 
   const increment = () => {
+    if (count >= 3) return;
     setCount((prevCount) => prevCount + 1);
-    setAriaMsg(`성인 승객 추가 ${count + 1}`);
+    setAriaMsg(`${label} 승객 추가 ${count + 1}`);
   };
 
   const decrement = () => {
+    if (count <= 0) return;
     setCount((prevCount) => prevCount - 1);
-    setAriaMsg(`텍스트 숫자만 수정 ${count - 1}`);
+    setAriaMsg(`${label} 승객 감소 ${count - 1}`);
   };
 
   const toggleTooltip = (event: MouseEvent<HTMLDivElement>) => {
@@ -23,9 +29,8 @@ const SpinButton: React.FC = () => {
   return (
     <section className='spinButtonContainer'>
       <div>
-        <h1 aria-label='승객 선택'>승객 선택</h1>
         <div className='spinButtonLabel'>
-          <label>성인</label>
+          <label>{label}</label>
           <div
             className='helpIcon'
             onMouseEnter={toggleTooltip}
@@ -44,7 +49,7 @@ const SpinButton: React.FC = () => {
         <button
           onClick={decrement}
           className='spinButton'
-          aria-label='성인 탑승자 한명 줄이기 버튼'
+          aria-label={`${label} 탑승자 한명 줄이기 버튼`}
         >
           -
         </button>
@@ -58,12 +63,12 @@ const SpinButton: React.FC = () => {
           aria-valuemin={1}
           aria-valuemax={3}
           id='passenger_input'
-          aria-label={`성인 ${count} 텍스트 숫자만 수정`}
+          aria-label={`${label} ${count} 텍스트 숫자만 수정`}
         />
         <button
           onClick={increment}
           className='spinButton'
-          aria-label='성인 탑승자 한명 늘리기 버튼'
+          aria-label={`${label} 탑승자 한명 늘리기 버튼`}
         >
           +
         </button>

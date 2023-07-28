@@ -1,11 +1,14 @@
-import React from "react";
-import "./App.css";
-import SpinButton from "./components/SpinButton";
+import React from 'react';
+import './App.css';
+import SpinButton from './components/SpinButton';
 
 function App() {
   return (
-    <div className="App">
-      <SpinButton />
+    <div className='App'>
+      <h1 aria-label='승객 선택'>승객 선택</h1>
+      <SpinButton label='성인' />
+      <SpinButton label='소아' />
+      <SpinButton label='유아' />
     </div>
   );
 }
