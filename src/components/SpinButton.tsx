@@ -5,14 +5,15 @@ const SpinButton: React.FC = () => {
   const [count, setCount] = useState<number>(0);
   const [isTooltipVisible, setIsTooltipVisible] = useState<boolean>(false);
   const [ariaMsg, setAriaMsg] = useState<string>('');
+
   const increment = () => {
     setCount((prevCount) => prevCount + 1);
-    setAriaMsg(`성인 승객 추가 ${count}`);
+    setAriaMsg(`성인 승객 추가 ${count + 1}`);
   };
 
   const decrement = () => {
     setCount((prevCount) => prevCount - 1);
-    setAriaMsg(`텍스트 숫자만 수정 ${count}`);
+    setAriaMsg(`텍스트 숫자만 수정 ${count - 1}`);
   };
 
   const toggleTooltip = (event: MouseEvent<HTMLDivElement>) => {
@@ -57,6 +58,7 @@ const SpinButton: React.FC = () => {
           aria-valuemin={1}
           aria-valuemax={3}
           id='passenger_input'
+          aria-label={`성인 ${count} 텍스트 숫자만 수정`}
         />
         <button
           onClick={increment}
@@ -66,13 +68,7 @@ const SpinButton: React.FC = () => {
           +
         </button>
       </div>
-      <p
-        style={{ display: 'none' }}
-        role='alert'
-        aria-hidden='true'
-        aria-live='assertive'
-        aria-relevant='text'
-      >
+      <p className='hidden' aria-live='assertive' aria-relevant='text'>
         {ariaMsg}
       </p>
     </section>
